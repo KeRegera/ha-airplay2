@@ -5,6 +5,13 @@ for i in $(seq 1 30); do
   sleep 1
 done
 
+# auf Avahi warten
+for i in $(seq 1 30); do
+  [ -S /run/avahi-daemon/socket ] && break
+  sleep 1
+done
+sleep 2
+
 VERBOSE=""
 [ "$(bashio::config 'log_level')" = "debug" ] && VERBOSE="-vv"
 

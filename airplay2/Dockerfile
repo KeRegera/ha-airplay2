@@ -27,7 +27,7 @@ FROM ${BUILD_FROM}
 
 RUN apk add --no-cache \
     alsa-lib alsa-utils alsa-plugins-pulse popt libconfig avahi-libs \
-    soxr ffmpeg-libs libplist libsodium libgcrypt openssl dbus-libs libuuid
+    soxr ffmpeg-libs libplist libsodium libgcrypt openssl dbus-libs libuuid dbus avahi
 
 COPY --from=builder /out/usr/ /usr/
 COPY rootfs /

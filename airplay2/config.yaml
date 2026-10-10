@@ -1,8 +1,8 @@
 name: AirPlay 2 Receiver
-version: "1.0.0"
+version: "1.1.0"
 slug: airplay2_receiver
 description: AirPlay-2-Empfänger (Shairport Sync + NQPTP) – streame von iPhone, iPad und Mac direkt auf dein Home Assistant
-url: https://github.com/KeRegera/ha-airplay2
+url: https://github.com/DEIN-USER/ha-airplay2-addon
 arch:
   - aarch64
   - amd64
@@ -11,12 +11,12 @@ startup: services
 boot: auto
 init: false
 host_network: true
-host_dbus: true
 audio: true
 options:
   name: "Home Assistant"
   output_device: "default"
   mixer_control_name: ""
+  avahi_interfaces: ""
   interpolation: "soxr"
   allow_session_interruption: true
   session_timeout: 120
@@ -25,6 +25,7 @@ schema:
   name: str
   output_device: str
   mixer_control_name: str?
+  avahi_interfaces: str?
   interpolation: list(auto|basic|soxr)
   allow_session_interruption: bool
   session_timeout: int(10,3600)

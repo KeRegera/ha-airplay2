@@ -28,3 +28,24 @@ bashio::config.true 'allow_session_interruption' && INTERRUPT="yes"
 } > /etc/shairport-sync.conf
 
 bashio::log.info "Konfiguration erzeugt für Gerät '${NAME}' (Ausgabe: ${DEVICE})"
+
+# --- Eigener Avahi-Daemon (der Host-Avahi ist aus dem Container nicht erreichbar)
+AV_IF="$(bashio::config 'avahi_interfaces')"
+mkdir -p /etc/avahi
+{
+  echo '[server]'
+  echo 'host-name=ha-airplay2'
+  echo 'use-ipv4=yes'
+  echo 'use-ipv6=no'
+  echo 'enable-dbus=yes'
+  echo 'disallow-other-stacks=no'
+  if bashio::var.has_value "${AV_IF}"; then
+    echo "allow-interfaces=${AV_IF}"
+  fi
+  echo '[publish]'
+  echo 'publish-hinfo=no'
+  echo 'publish-workstation=no'
+  echo '[wide-area]'
+  echo 'enable-wide-area=no'
+} > /etc/avahi/avahi-daemon.conf
+bashio::log.info "Avahi-Konfiguration erzeugt (Interfaces: ${AV_IF:-alle})"

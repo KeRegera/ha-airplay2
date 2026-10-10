@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bashio
+for i in $(seq 1 30); do
+  [ -S /run/dbus/system_bus_socket ] && break
+  sleep 1
+done
+rm -rf /run/avahi-daemon
+bashio::log.info "Starte Avahi ..."
+exec avahi-daemon --no-chroot --no-rlimits

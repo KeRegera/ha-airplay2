@@ -14,11 +14,12 @@ Der Ton wird über die in HAOS gewählte Audioausgabe ausgegeben
 | `interpolation` | `soxr` (beste Qualität), `basic` oder `auto` |
 | `allow_session_interruption` | Ein anderes Gerät darf laufende Wiedergabe übernehmen |
 | `session_timeout` | Sekunden, nach denen eine inaktive Sitzung beendet wird |
+| `avahi_interfaces` | Optional: Schnittstelle für mDNS, z. B. `end0`. Leer = alle |
 | `log_level` | `debug` für ausführliche Logs |
 
 ## Hinweise
 
 - Das Add-on nutzt das Host-Netzwerk (nötig für mDNS und die Ports 319/320 UDP von NQPTP).
-- Der Mdns/Bonjour-Dienst des Hosts (Avahi) wird über D-Bus genutzt.
+- Das Add-on bringt einen eigenen D-Bus- und Avahi-Dienst mit (Hostname `ha-airplay2`). Mit `avahi_interfaces` (z. B. `end0`) kannst du die Netzwerkschnittstelle festlegen.
 - iPhone/Mac und Home Assistant müssen im selben Netz/VLAN sein.
 - Läuft bereits ein anderer Shairport-Sync- oder NQPTP-Dienst auf dem Host, vorher beenden.

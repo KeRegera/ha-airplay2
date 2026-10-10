@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo "Avahi beendet (Code $1) - Add-on wird gestoppt"
+/run/s6/basedir/bin/halt
