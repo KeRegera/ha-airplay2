@@ -32,6 +32,8 @@ bashio::log.info "Konfiguration erzeugt für Gerät '${NAME}' (Ausgabe: ${DEVICE
 # --- Eigener Avahi-Daemon (der Host-Avahi ist aus dem Container nicht erreichbar)
 AV_IF="$(bashio::config 'avahi_interfaces')"
 mkdir -p /etc/avahi
+# Standard-Dienste (SSH/SFTP) nicht im Netz anbieten
+rm -f /etc/avahi/services/*.service
 {
   echo '[server]'
   echo 'host-name=ha-airplay2'
