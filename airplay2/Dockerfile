@@ -13,7 +13,7 @@ RUN apk add --no-cache \
 # NQPTP (PTP-Zeitgeber, zwingend für AirPlay 2)
 RUN git clone --depth 1 --branch ${NQPTP_VERSION} https://github.com/mikebrady/nqptp.git /src/nqptp \
  && cd /src/nqptp && autoreconf -fi && ./configure && make -j"$(nproc)" \
- && make DESTDIR=/out install
+ && install -D -m 755 nqptp /out/usr/local/bin/nqptp
 
 # Shairport Sync mit AirPlay 2
 RUN git clone --depth 1 --branch ${SPS_VERSION} https://github.com/mikebrady/shairport-sync.git /src/sps \
