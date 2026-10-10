@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv bashio
+# auf NQPTP warten
+for i in $(seq 1 30); do
+  [ -e /dev/shm/nqptp ] && break
+  sleep 1
+done
+
+VERBOSE=""
+[ "$(bashio::config 'log_level')" = "debug" ] && VERBOSE="-vv"
+
+bashio::log.info "Starte Shairport Sync (AirPlay 2) ..."
+exec shairport-sync -c /etc/shairport-sync.conf ${VERBOSE}
