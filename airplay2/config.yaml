@@ -1,5 +1,5 @@
 name: AirPlay 2 Receiver
-version: "1.1.0"
+version: "1.1.1"
 slug: airplay2_receiver
 description: AirPlay-2-Empfänger (Shairport Sync + NQPTP) – streame von iPhone, iPad und Mac direkt auf dein Home Assistant
 url: https://github.com/DEIN-USER/ha-airplay2-addon
